@@ -35,17 +35,18 @@ public class Program {
 			}
 			
 			double avg = list.stream()
-							.map(p -> p.getPrice())
-							.reduce(0.0, (x, y) -> x + y) / list.size();
+					.map(p -> p.getPrice())
+					.reduce(0.0, (x, y) -> x + y) / list.size();
 			
 			System.out.println("Average price: " + String.format("%.2f", avg));
 			
 			Comparator<String> comp = (s1, s2) -> s1.toUpperCase().compareTo(s2.toUpperCase());
 			
 			List<String> names = list.stream()
-							.filter(p -> p.getPrice() < avg)
-							.map(p -> p.getName()).sorted(comp.reversed())
-							.collect(Collectors.toList());
+					.filter(p -> p.getPrice() < avg)
+					.map(p -> p.getName())
+					.sorted(comp.reversed())
+					.collect(Collectors.toList());
 			
 			names.forEach(System.out::println);
 		}
